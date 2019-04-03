@@ -132,10 +132,14 @@ final class Connection_Manager {
 		$dbtype = ucfirst($dbtype);
 		$driver = "\\Query\\Drivers\\{$dbtype}\\Driver";
 
-		// Create the database connection
-		$db = ( ! empty($params->user))
-			? new $driver($dsn, $params->user, $params->pass, $options)
-			: new $driver($dsn, '', '', $options);
+        // Create the database connection
+		if ($dbtype == 'firebird') {
+		    $options['host'] = $params['host'];
+        }
+
+        $db = ( ! empty($params->user))
+            ? new $driver($dsn, $params->user, $params->pass, $options)
+            : new $driver($dsn, '', '', $options);
 
 		// Set the table prefix, if it exists
 		if (isset($params->prefix))

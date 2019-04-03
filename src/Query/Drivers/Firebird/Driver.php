@@ -84,7 +84,7 @@ class Driver extends \Query\Abstract_Driver {
 			: '\\fbird_connect';
 
 		$this->conn = $connect_function($dbpath, $user, $pass, 'utf-8', 0);
-		$this->service = \fbird_service_attach('localhost', $user, $pass);
+		$this->service = \fbird_service_attach($options['host'], $user, $pass);
 
 		// Throw an exception to make this match other pdo classes
 		if ( ! \is_resource($this->conn)) throw new \PDOException(\fbird_errmsg(), \fbird_errcode(), NULL);
