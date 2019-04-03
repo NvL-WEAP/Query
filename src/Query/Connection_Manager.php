@@ -133,8 +133,8 @@ final class Connection_Manager {
 		$driver = "\\Query\\Drivers\\{$dbtype}\\Driver";
 
         // Create the database connection
-		if ($dbtype == 'firebird') {
-		    $options['host'] = $params['host'];
+		if ($dbtype == 'Firebird') {
+		    $options['host'] = $params->host;
         }
 
         $db = ( ! empty($params->user))
