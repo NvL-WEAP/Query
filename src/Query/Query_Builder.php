@@ -656,6 +656,8 @@ class Query_Builder extends Abstract_Query_Builder implements Query_Builder_Inte
 		$table = $this->db->quote_ident($table);
 		$table = implode(' ', $table);
 
+		$table = str_replace(['"AS"', '"as"'], 'AS', $table);
+		
 		// Parse out the join condition
 		$parsed_condition = $this->parser->compile_join($condition);
 		$condition = $table . ' ON ' . $parsed_condition;
